@@ -1,0 +1,1 @@
+<a href="<?echo base_url()?>admin/destroy">Reset database</a>

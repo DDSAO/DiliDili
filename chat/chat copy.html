@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+        <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+        <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+        <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+       
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DiliDili (｡◕∀◕｡)</title>
+    <meta name="description" content="A video sharing website!proudly created by haosun">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/jquery.Jcrop.min.css" type="text/css">
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/js.cookie.min.js"></script>
+
+   
+    <script>
+      var chat = {
+        num : Math.floor(Math.random() * 10000),
+        // CHANGE THE HOST TO YOUR OWN!
+        host : "ws://localhost:12345",
+        socket : null, // Will hold the socket object
+
+        // HTML ELEMENTS
+        ewrap : null, // Chat message container
+        etext : null, // Text input
+        esend : null, // Send message button
+
+        init : function () {
+        // chat.init() : initialize
+            chat.socket = new WebSocket(chat.host);
+          // Get HTML elements
+          chat.ewrap = document.getElementById("chat-wrap");
+          chat.etext = document.getElementById("chat-text");
+          chat.esend = document.getElementById("chat-send");
+
+          // READY - connected to server
+          chat.socket.onopen = function (e) {
+            chat.send('admin','entered');
+            chat.esend.disabled = false;
+          };
+
+          // On connection close
+          chat.socket.onclose = function (e) {
+            chat.send('quit');
+            chat.esend.disabled = true;
+          };
+
+          chat.socket.onmessage = function (e) {
+              let data = JSON.parse(e.data);
+              let content;
+              if (data.source === "system") {
+                document.getElementById("currentNum").innerHTML = data.text;
+              } else {
+                if (data.source === "admin") {
+                  content = '<div class="w-100 my-2 text-center" style="background:rgb(240,240,240);border-radius:10px;padding:2px 10px">'+data.user+' joined in!</div>';
+                } else {
+                  content = '<div class="w-100 my-2 d-flex flex-row"><div class="mr-2 d-flex align-items-center">'+data.user+': </div><div style="background:rgb(240,240,240);border-radius:10px" class="p-2">'+data.text+'</div></div>';
+                }
+                chat.ewrap.innerHTML += content;
+              }
+              chat.ewrap.scrollTop = chat.ewrap.scrollHeight - chat.ewrap.clientHeight;
+          };
+
+          // On connection error
+          chat.socket.onerror = function (e) {
+            chat.esend.disabled = true;
+            chat.esend.innerHTML = "disconnected";
+          };
+        },
+
+        send : function (source, text) {
+            // chat.send() : send message to server
+
+            chat.socket.send(JSON.stringify({
+                'source': source,
+                'user':Cookies.get('name') === undefined ? 'visitor'+chat.num :Cookies.get('name'),
+                'text':text,
+            }));
+            chat.etext.value = "";
+            return false;''
+        },
+       
+      };
+      window.addEventListener("load", chat.init);
+      
+      //window.addEventListener("beforeunload", function(e){chat.socket.close();}, false);
+    </script>
+    <body style="background:rgb(255, 253, 140)" >
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="h-100 container">
+      <div style="height:90%" class=" d-flex flex-column justify-content-start align-items-start overflow-auto" id="chat-wrap"></div>
+      <form style="height:10%" class="my-auto row" onsubmit="return chat.send('user',chat.etext.value)">
+        <input class="col-8 col-lg-10 form-control" type="text" id="chat-text" required/>
+        <input style="height:fit-content" class="col-4 col-lg-2 btn btn-primary" type="submit" id="chat-send" value="Send" disabled/>
+        <p>Current Number of people in the chat room: <span id="currentNum">0</span></p>
+      </form>
+    </div>
+    
+  </body>
+</html>

@@ -1,0 +1,440 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+p {
+  margin: auto;
+}
+
+#homepage-carousel {
+  background: #0b2b3d;
+}
+
+@media (min-width: 992px) {
+  #homepage-carousel img {
+    max-height: 50vh;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #homepage-carousel img {
+    max-height: 70vh;
+  }
+}
+
+.categoryDisplay {
+  height: 50vh;
+}
+
+@media (min-width: 992px) {
+  .categoryDisplay .categoryDisplayBox {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
+
+.categoryDisplay h3 {
+  line-height: 100%;
+}
+
+.categoryDisplay .categoryDisplayBox {
+  height: 80%;
+  overflow: scroll;
+}
+
+.categoryDisplay .card img {
+  max-height: 50%;
+}
+
+.customCard {
+  min-width: 200px;
+  max-width: 220px;
+  overflow: hidden;
+  margin: 5px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.customCard p {
+  color: black;
+  margin: 0;
+}
+
+.customCard h5 {
+  color: black;
+}
+
+.customCard:hover {
+  background: #fafa98;
+}
+
+.videoFrame {
+  padding: 0 5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.videoFrame .title {
+  margin: 20px 0;
+}
+
+.videoFrame #videoBox #danmuBox {
+  position: relative;
+  z-index: 2;
+}
+
+.videoFrame #videoBox video {
+  position: relative;
+  z-index: 1;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+
+@media (min-width: 992px) {
+  .videoFrame {
+    /*
+        & video{
+            top: -($videoLargeHeight - 100);
+        }
+        */
+  }
+  .videoFrame .leftFrame {
+    width: 70%;
+  }
+  .videoFrame .rightFrame {
+    width: 30%;
+  }
+  .videoFrame .rightFrame .danmuku {
+    height: 432px;
+    overflow: scroll;
+  }
+  .videoFrame .rightFrame .danmuku p {
+    margin: 0;
+  }
+  .videoFrame #videoBox {
+    width: 768px;
+    height: 432px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .videoFrame {
+    /*
+        & video{
+            top: -($videoSmallHeight - 100);
+        }
+        */
+  }
+  .videoFrame .leftFrame {
+    width: 100%;
+  }
+  .videoFrame .rightFrame {
+    display: none;
+  }
+  .videoFrame #videoBox {
+    width: 512px;
+    height: 288px;
+  }
+}
+
+.userIconSmall {
+  width: 50px;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  vertical-align: text-top;
+}
+
+.recommmendationBox {
+  height: 6em;
+}
+
+.recommmendationBox > div {
+  padding: 0;
+  height: 100%;
+}
+
+.recommmendationBox .videoPic {
+  -o-object-fit: fill;
+     object-fit: fill;
+  height: 100%;
+  width: 100%;
+}
+
+.onePage {
+  background: #fafa98;
+}
+
+@media (min-width: 992px) {
+  .onePage {
+    width: 100%;
+    height: 100%;
+  }
+  .onePage .mainFrame {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .onePage .mainFrame .dashMenu {
+    width: 20%;
+    height: 100%;
+  }
+  .onePage .mainFrame .dashMenu #dashMenuTrigger {
+    display: none;
+  }
+  .onePage .mainFrame .dashContent {
+    width: 80%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .onePage {
+    width: 100%;
+    min-height: 100%;
+  }
+  .onePage .mainFrame {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .onePage .mainFrame .dashMenu {
+    width: 100%;
+  }
+  .onePage .mainFrame .dashMenu #dashMenuTrigger {
+    display: block;
+  }
+  .onePage .mainFrame .dashMenu .menuBar {
+    display: none;
+  }
+  .onePage .mainFrame .dashContent {
+    width: 100%;
+  }
+}
+
+.onePage .title {
+  padding: 1em 2em;
+  background: #f6f64f;
+}
+
+.onePage .navFrame {
+  height: 8%;
+}
+
+.onePage .mainFrame {
+  height: 92%;
+}
+
+.onePage .mainFrame .dashMenu {
+  -webkit-box-shadow: 3px 3px 3px #bdbd09;
+          box-shadow: 3px 3px 3px #bdbd09;
+}
+
+.onePage .mainFrame .dashMenu #dashMenuTrigger {
+  border-radius: 20px;
+  padding: 1em 0;
+  width: 100%;
+  text-align: center;
+}
+
+.onePage .mainFrame .dashMenu #dashMenuTrigger:hover {
+  background: #f5f537;
+}
+
+.onePage .mainFrame .dashMenu .menuBar {
+  border-radius: 20px;
+  padding: 1em 0;
+  width: 100%;
+  text-align: center;
+}
+
+.onePage .mainFrame .dashMenu .menuBar.active {
+  background: #eded0c;
+  border-radius: 0;
+}
+
+.onePage .mainFrame .dashMenu .menuBar:hover {
+  background: #f5f537;
+}
+
+.onePage .mainFrame .dashContent {
+  overflow: scroll;
+}
+
+.onePage .mainFrame .dashContent #loading {
+  display: none;
+}
+
+.onePage .mainFrame .dashContent div.content {
+  display: none;
+}
+
+.onePage .mainFrame .dashContent div.currentPage {
+  display: block !important;
+}
+
+.onePage .mainFrame .dashContent div.currentPage .canEdit:hover span {
+  display: none;
+}
+
+.onePage .mainFrame .dashContent div.currentPage .canEdit:hover:after {
+  content: "Edit";
+}
+
+.onePage .mainFrame .dashContent div.currentPage .saveChange {
+  visibility: hidden;
+}
+
+.errors {
+  border: 5px solid red;
+  border-radius: 20px;
+}
+
+.errors .errorTitle {
+  font-weight: 200;
+  border-bottom: 2px solid red;
+}
+
+.errorMessage {
+  color: red;
+}
+
+img.loginIcon {
+  width: 150px;
+  height: 150px;
+}
+
+@media (min-width: 992px) {
+  img.profileImage {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  img.profileImage {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+img.coverImg {
+  height: 100px;
+  width: 100px;
+}
+
+img.carouselImg {
+  width: 512px;
+  height: 288px;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+#popUp {
+  position: relative;
+  top: -100%;
+  z-index: 1;
+  background: rgba(128, 128, 128, 0.5);
+}
+
+#popUp #editBox {
+  background: white;
+  z-index: 2;
+}
+
+#popUp #editBox #originalPhoto {
+  width: 500px;
+  height: 300px;
+  overflow: scroll;
+  border: 10px dashed #c7c7c7;
+  border-radius: 30px;
+}
+
+#popUp #editBox #originalPhoto #submitPhoto {
+  display: none;
+}
+
+#popUp #editBox #originalPhoto #submittedPhoto {
+  height: 100%;
+  width: auto;
+}
+
+@media (min-width: 992px) {
+  #popUp #editBox {
+    width: 50%;
+    height: 90%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #popUp #editBox {
+    width: 90%;
+    height: 90%;
+  }
+}
+
+#userImageBox #userImage:hover + #userImageLabel {
+  visibility: visible;
+  background: rgba(250, 250, 152, 0.6);
+}
+
+#userImageBox #userImageLabel {
+  visibility: hidden;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  cursor: pointer;
+}
+
+#userImageBox #userImageLabel:hover {
+  visibility: visible;
+  background: rgba(250, 250, 152, 0.6);
+}
+
+@media (min-width: 992px) {
+  #userImageBox #userImageLabel {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #userImageBox #userImageLabel {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+#options .option {
+  background: white;
+  border: 2px solid #f5f537;
+}
+
+#options .chosenOption {
+  border: 2px solid black;
+}
+
+.roundBorder {
+  border: 2px solid lightgreen;
+  border-radius: 5px;
+}
+
+.darkYellow {
+  background-color: #f9f980;
+}
+/*# sourceMappingURL=style.css.map */
